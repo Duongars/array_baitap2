@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai tập array</title>
+
+</head>
+<body>
+ <script>
+// Bài 6: Tạo một mảng chứa ít nhất 5 số, sau đó yêu cầu người dùng nhập một số, thực
+// hiện tìm kiếm để tìm số trong mảng, nếu số được tìm thấy, hãy cho người dùng biết
+// rằng với chỉ số của nó trong mảng, nếu không, cũng nói với họ như vậy
+
+let inputArr =[]
+do {
+inputArr = prompt("hãy nhập mảng có ít nhất 5 giá trị").split(",");  
+} while ( inputArr.length<5);
+
+let value = prompt("hãy nhập giá trị cần tìm kiếm");
+let aprear = 0;
+let numIndex =[]
+for (let index = 0; index < inputArr.length; index++) {
+if (inputArr[index] == value) {
+    aprear++;
+    numIndex.push(index)
+}   
+}
+
+if (aprear!=0) {
+    alert(`giá trị "${value} " được tìm thấy ${aprear} lần tại các vị trí ${numIndex.join(",")}`)
+} else {
+    alert("không tìm thấy giá trị cần tìm trong mảng")
+}
+
+
+// Bài 7: Bạn là một người chăn cừu sở hữu một đàn cừu. Mỗi con cừu trong đàn của
+// bạn có kích thước khác nhau:
+
+// 7.1. Tạo một mảng để thể hiện kích thước đàn của bạn và ghi lại tất cả kích thước
+// đàn của bạn, đầu ra màn hình dự kiến:
+// // 7.2. Cuối mỗi tháng, bạn phải chọn một và chỉ một con cừu để xén lông và do đó bạn
+// muốn chọn con lớn nhất để tối đa hóa lợi nhuận của mình. Thêm tập lệnh để tìm
+// kiếm những con cừu lớn nhất trong danh sách của bạn:
+
+
+let sheepGroup = [];
+let bigSheep = 0;
+let validCheck;
+let bigSheepIndex =[];
+// kiểm tra đầu vào xem mảng có phải là các số nguyên dương ko?
+do {
+validCheck= true ;
+sheepGroup = prompt("hãy nhập kích thước đàn cừu").split(",");
+for (let index = 0; index < sheepGroup.length; index++) {
+    if (!isNaN(sheepGroup[index]) & sheepGroup[index] >= 0) {
+        sheepGroup[index] = Number(sheepGroup[index])
+        if (sheepGroup[index] >= bigSheep) {
+            bigSheep = sheepGroup[index];
+            
+        }
+    } else {
+        alert("vui lòng nhập giá trị là số nguyên dương");
+        validCheck = false;
+        break;
+    }
+}
+} while (validCheck == false);
+console.log(`
+xin chào đây là kích thước đàn cừu của tôi  
+ ${sheepGroup}`
+
+);
+// kiểm tra xem có giá trị lớn nhất xuất hiên bao nhiêu lần
+
+for (let index = 0; index < sheepGroup.length; index++) {
+    if (sheepGroup[index] == bigSheep ) {
+        bigSheepIndex.push(index);
+    }
+}
+console.log(`con lớn nhất có kích thước la ${bigSheep} ở vị trí ${bigSheepIndex.join(",")} hãy cạo nó`);
+// 7.3 cạo lông cừu
+for (let index = 0; index < bigSheepIndex.length; index++) {
+    sheepGroup.splice(bigSheepIndex[index],1,8)   
+}
+bigSheep = 0;
+bigSheepIndex =[];
+console.log(`
+sau khi cạo lộng cừu đây là kích thước đàn cừu của tôi
+ ${sheepGroup}
+ `);
+
+
+//7.4 sau 1 tháng mỗi con tăng 50
+for (let index = 0; index < sheepGroup.length; index++) {
+    sheepGroup[index]+=50;
+}
+
+console.log(`
+    Month 1
+    sau 1 tháng trôi qua đây là kích thước của chúng
+      ${sheepGroup}
+ `);
+//  7.5. Tìm con cừu lớn nhất hiện tại 
+for (let index = 0; index < sheepGroup.length; index++) {
+    if (sheepGroup[index]>=bigSheep) {
+        bigSheep = sheepGroup[index];
+    }   
+}
+for (let index = 0; index < sheepGroup.length; index++) {
+    if (sheepGroup[index] == bigSheep ) {
+        bigSheepIndex.push(index);
+    }
+}
+console.log(`con lớn nhất có kích thước la ${bigSheep} ở vị trí ${bigSheepIndex.join(",")} hãy cạo nó`);
+//  và cạo lông nó
+for (let index = 0; index < bigSheepIndex.length; index++) {
+    sheepGroup.splice(bigSheepIndex[index],1,8)   
+}
+console.log(`
+sau khi xén lông cừu đây là kích thước đàn cừu của tôi
+ ${sheepGroup}
+ `);
+
+bigSheep = 0;
+bigSheepIndex =[];
+// 7.6. Hãy làm điều này trong 3 tháng (hoặc bao lâu tùy thích)
+// (Sử dụng vòng lặp để thực hiện)
+for (let index = 0; index < sheepGroup.length; index++) {
+    sheepGroup[index]+=50;
+}
+
+console.log(`
+    Month 2
+    sau 2 tháng trôi qua đây là kích thước của chúng
+      ${sheepGroup}
+ `);
+ for (let index = 0; index < sheepGroup.length; index++) {
+    if (sheepGroup[index]>=bigSheep) {
+        bigSheep = sheepGroup[index];
+    }   
+}
+for (let index = 0; index < sheepGroup.length; index++) {
+    if (sheepGroup[index] == bigSheep ) {
+        bigSheepIndex.push(index);
+    }
+}
+console.log(`con lớn nhất có kích thước la ${bigSheep} ở vị trí ${bigSheepIndex.join(",")} hãy cạo nó`);
+for (let index = 0; index < bigSheepIndex.length; index++) {
+    sheepGroup.splice(bigSheepIndex[index],1,8)   
+}
+console.log(`
+sau khi xén lông cừu đây là kích thước đàn cừu của tôi
+ ${sheepGroup}
+ `);
+
+
+// //  7.7. Sau ngày ngày xén lông cừu, bạn trở nên buồn chán. Bạn muốn bán đàn của
+// mình để đi du lịch khắp thế giới. Để có thương mại công bằng, bây giờ bạn phải tính
+// toán tổng kích thước đàn cừu của bạn và sau đó là số tiền dự kiến bạn có thể nhận
+// được từ việc bán đàn của mình, trước khi đưa ra thị trường. Viết một chương trình để
+// tính tổng kích thước đàn cừu của bạn cũng như số tiền bạn sẽ có. Đầu ra bảng điều
+// khiển mong đợi:
+
+// tính tổng kích thước đàn cừu;
+
+let accumlate = 0;
+
+for (let index = 0; index < sheepGroup.length; index++) {
+  accumlate+= sheepGroup[index];
+}
+
+console.log(`
+    đây là tổng kích thước đàn cừu của tôi ${accumlate}
+    tôi sẽ lấy ${accumlate} * 25 = ${accumlate*25};
+`);
+
+
+
+ </script>   
+</body>
+</html>
